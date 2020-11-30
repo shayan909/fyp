@@ -10,7 +10,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation alpha" />
+    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation alpha">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NLP.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLP.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +40,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
-  <component name="RunManager" selected="Python.NLP">
+  <component name="RunManager" selected="Python.NLP (1)">
     <configuration name="NLP (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,38 +129,38 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="250" y="75" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606750624791" />
-    <state width="1573" height="207" key="GridCell.Tab.0.bottom" timestamp="1606749854732">
+    <state width="1573" height="207" key="GridCell.Tab.0.bottom" timestamp="1606752389526">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606749854732" />
-    <state width="1573" height="207" key="GridCell.Tab.0.center" timestamp="1606749854732">
+    <state width="1573" height="207" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
+    <state width="1573" height="207" key="GridCell.Tab.0.center" timestamp="1606752389526">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606749854732" />
-    <state width="1573" height="207" key="GridCell.Tab.0.left" timestamp="1606749854732">
+    <state width="1573" height="207" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
+    <state width="1573" height="207" key="GridCell.Tab.0.left" timestamp="1606752389526">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606749854732" />
-    <state width="1573" height="207" key="GridCell.Tab.0.right" timestamp="1606749854732">
+    <state width="1573" height="207" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
+    <state width="1573" height="207" key="GridCell.Tab.0.right" timestamp="1606752389526">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606749854732" />
-    <state width="1579" height="276" key="GridCell.Tab.1.bottom" timestamp="1606694038225">
+    <state width="1573" height="207" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
+    <state width="1573" height="259" key="GridCell.Tab.1.bottom" timestamp="1606752038907">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1579" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606694038225" />
-    <state width="1579" height="276" key="GridCell.Tab.1.center" timestamp="1606694038224">
+    <state width="1573" height="259" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606752038907" />
+    <state width="1573" height="259" key="GridCell.Tab.1.center" timestamp="1606752038907">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1579" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1606694038224" />
-    <state width="1579" height="276" key="GridCell.Tab.1.left" timestamp="1606694038224">
+    <state width="1573" height="259" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1606752038907" />
+    <state width="1573" height="259" key="GridCell.Tab.1.left" timestamp="1606752038907">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1579" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1606694038224" />
-    <state width="1579" height="276" key="GridCell.Tab.1.right" timestamp="1606694038224">
+    <state width="1573" height="259" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1606752038907" />
+    <state width="1573" height="259" key="GridCell.Tab.1.right" timestamp="1606752038907">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1579" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1606694038224" />
+    <state width="1573" height="259" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1606752038907" />
     <state x="299" y="72" width="998" height="708" key="SettingsEditor" timestamp="1606739875404">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -166,9 +169,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606749900332" />
+    <state x="262" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606752022610">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="262" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1600.860@0.0.1600.860" timestamp="1606752022610" />
     <state x="463" y="180" key="search.everywhere.popup" timestamp="1606739614483">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="463" y="180" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1606739614483" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint suspend="NONE" type="python-exception">
+          <properties exception="BaseException" />
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
