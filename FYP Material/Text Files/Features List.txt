@@ -1,0 +1,35 @@
+1.  Chat Bot: write symtoms->app will ask sub types of symtoms->recommend OTCs
+2.  Search OTC drugs based on symtoms, brand name, drug name.
+3.  F.A.Qs*
+4.  Blogs*
+5.  Nearest Clinics, Hospitals (Google Api)*
+6.  Pill Schedule Generation
+7.  MyMedicines --profile
+8.  Drug-Drug Interaction checker
+9.  Drugs Side Effects Search
+10. *Forum
+11. Physicians Search Directory*
+12. Admin support (complaint processing,view,reply)
+
+Workings:
+
+If no OTC drug is matching then recommend doctor visit.
+
+can ask about location if it is dirty,clean,etc.
+
+The validation of the user login details
+occurs here. Then Symptoms are extracted
+using String Searching Algorithm where
+substring representing the symptoms is
+identified in the natural language text
+input. When users give directly the
+symptom name such as(e.g. “I have a
+cough, fever, and nausea”), the system will
+easily identify it. But however, the system
+should also be able to handle input like,
+“When I read, I’m okay at first, but over
+time, my eyes seem to get tired, and I start
+to see double." In this case, the system
+should extract substrings like “eyes tired”
+and “see double” (and not substrings like
+“read” or “okay”)

@@ -1,0 +1,61 @@
+{"intents": [
+        {"tag": "fever",
+         "patterns": ["fever", "having fever", "i am having fever", "i have temperature", "body temperature", "rise in body temperature","100 degree", "hundred", "ninety nine"],
+         "question": ["How long you are having fever", "what is the temperature"],
+         "context_set": ""
+         },
+ 	{"tag": "duration",
+         "patterns": ["one day", "1 day", "5 days", "two weeks", "3 weeks"],
+         "responses": ["For how long?", "From how many days you are having fever?"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "sneezing",
+         "patterns": ["sneeze", "having sneezes", "i am sneezing", "runny nose"],
+         "question": ["How long you are having fever", "what is the temperature"],
+         "context_set": ""
+         },
+ 	{"tag": "duration",
+         "patterns": ["one day", "1 day", "5 days", "two weeks", "3 weeks"],
+         "responses": ["For how long?", "From how many days you are having fever?"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "coughing",
+         "patterns": ["fever", "having fever", "i am having fever", "i have temperature", "body temperature", "rise in body temperature","100 degree", "hundred", "ninety nine"],
+         "question": ["How long you are having fever", "what is the temperature"],
+         "context_set": ""
+         },
+ 	{"tag": "duration",
+         "patterns": ["one day", "1 day", "5 days", "two weeks", "3 weeks"],
+         "responses": ["For how long?", "From how many days you are having fever?"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "headache",
+         "patterns": ["fever", "having fever", "i am having fever", "i have temperature", "body temperature", "rise in body temperature","100 degree", "hundred", "ninety nine"],
+         "question": ["How long you are having fever", "what is the temperature"],
+         "context_set": ""
+         },
+ 	{"tag": "duration",
+         "patterns": ["one day", "1 day", "5 days", "two weeks", "3 weeks"],
+         "responses": ["For how long?", "From how many days you are having fever?"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "chills",
+         "patterns": ["fever", "having fever", "i am having fever", "i have temperature", "body temperature", "rise in body temperature","100 degree", "hundred", "ninety nine"],
+         "question": ["How long you are having fever", "what is the temperature"],
+         "context_set": ""
+         },
+ 	{"tag": "duration",
+         "patterns": ["one day", "1 day", "5 days", "two weeks", "3 weeks"],
+         "responses": ["For how long?", "From how many days you are having fever?"],
+         "context_set": ""
+         }
+   ]
+}

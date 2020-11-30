@@ -1,0 +1,47 @@
+Dataset 
+Medicine Database - New medicine
+Chatbot Accuracy- NLP
+
+Why is chatbot better than reading online about OTC?
+
+U.S. consumers make 26 trips a year to purchase OTC products. 
+They only visit doctors, on average, three times a year.
+Nearly seven in 10 parents have given their child an OTC medicine late at night to help treat a sudden medical symptom.
+
+Ninety-two percent are satisfied with the medications
+they have used for self-care-CHPA Presentations at
+Food and Drug Administration
+OTC Part 15 Hearing
+Holiday Inn Gaithersburg, Maryland
+June 28 and 29, 2000
+
+These benefits not only accrue to the individual, but to society
+as well. The resource savings to the healthcare system through responsible self-medication
+allows better allocation of limited healthcare resources and physicians’ time to important
+issues beyond the scope of self-care.
+
+Esa Anjum1:41 AM
+OTC products typically contain usage limitations, i.e., if the condition persists
+beyond X days, see a physician. Many conditions exist across a spectrum of severity and
+symptomatology where it is entirely appropriate to provide products for both self-care and
+physician-directed care.
+
+
+
+However, according to the
+administration’s report, more than 200 thousand people in
+China, even 100 thousand in USA, die each year due to
+medication errors. More than 42% medication errors are caused
+by doctors because experts write the prescription according to
+their experiences which are quite limited.
+
+apply technologies to recommendation systems that use the potential knowledge
+hiding in medic to decrease medical errors.
+
+
+chatbot can ask: Did you mean a,b or c
+
+
+
+
+

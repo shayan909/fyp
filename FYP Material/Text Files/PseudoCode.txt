@@ -1,0 +1,69 @@
+
+
+
+
+
+func getSymptoms(){
+
+chatbot[]
+s_details{}							
+print please describe your symptoms precisely.
+
+
+user_input = input() //i have fever and cough
+
+if user_input != none
+symptomsArray =	preProcess(user_input)
+
+for symptom in array--->['fever', 'cough']			[{}]
+	if array[symptom] != none:
+		chatbot = getIntents(array[symptom])
+			for q in chatbot:------------------------>Q1,Q2...Qn
+				print chatbot[q]
+				*s_details[q]=input()-------------------------------------->{"symptom": [{tag: "fever", "duration": "2 days"..},
+				 									{"tag": "cough", "duration": "1 day"... }]}
+		if symptoms are severe warn else if symptoms duration > 1 week warn
+ask current medications
+ask underlying conditions
+
+MEDICINES = SEARCH_MEDICINE(SYMPTOMS)
+DISEASE = DECISION_TREE(SYMPTOMS)
+											      
+	else:
+		re-enter input break; goto print	
+
+
+}
+
+func preProcess(user_input){
+
+NLP LOGIC
+
+return tokenize_array_of_symptoms--->['fever', 'cough']
+}
+
+
+getIntents(symptom){
+
+Question[]
+
+with open("intents.json") as file:
+
+data = json.load(file) 
+
+for i in data:
+    if i['intent'] == symptom:
+       Question.append(i['intent']['question1'])
+
+return Question1,question2
+}
+
+
+
+
+
+
+
+
+
+

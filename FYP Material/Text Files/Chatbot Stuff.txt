@@ -1,0 +1,29 @@
+ask ourselves these questions:
+
+1)ask about types of different symptoms. e.g.: types of cough
+
+2)sore throat in cold vs sore throat in allergy?
+
+3)What drugs to recommend. Will it just be based on major disease but also for minor symptoms.
+
+add User Profile,User's personal database
+
+Database of one disease type
+
+1)Confirm whether dosage is right in Pharmapedia
+2)Recommend more than one brand(for the sake of choice/availability)
+
+Indication, Dosage, Brand, Drug, Contraindications, Side effects, Interactions
+
+
+FYP-I:
+
+1st Stage: Pre-Processing(Tokenization,Text-Correction,Lemmetiztion,etc)
+2nd Stage: Find Key Words.
+3rd Stage: Deal with conflicting arguments.
+"not for 2 days but for 2 weeks"
+
+
+FYP-II: 
+-we can use context in our bots to provide more information about the disease.
+-Chatbot can ask user question like:'Did you mean ...?'

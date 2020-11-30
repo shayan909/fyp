@@ -1,0 +1,39 @@
+{"intents": [
+        {"tag": "fever",
+         "patterns": ["fever","Fever"],
+         "responses": ["For how long you are having fever", "What is the temperature"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "sneeze",
+         "patterns": ["sneezing", "sneezes"],
+         "responses": ["How many days you are having sneezes"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "cough",
+         "patterns": ["coughing"],
+         "responses": ["How many days you're having cough", "is your chest congested", "Do you have mucus", "is it dry"],
+         "context_set": ""
+         }
+ 	
+   ],
+[
+        {"tag": "headache",
+         "patterns": ["head pain", "pain", "head ache"],
+         "responses": ["How long you are experiencing pain", "is your pain severe"],
+         "context_set": ""
+         }
+   ],
+[
+        {"tag": "chills",
+         "patterns": ["chill", "shivers", "shivering", "shaking"],
+         "responses": ["how long are you experiencing shivers"],
+         "context_set": ""
+         }
+   ]
+}
+
+

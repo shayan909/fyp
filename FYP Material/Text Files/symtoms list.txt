@@ -1,0 +1,55 @@
+SYMPTOMS LIST:
+
+Allergies:
+
+1. sneezing and an itchy, runny or blocked nose (allergic rhinitis)
+
+2. itchy, red, watering eyes (conjunctivitis)
+
+3. wheezing, chest tightness, shortness of breath and a cough
+
+4. a raised, itchy, red rash (hives)
+
+5. swollen lips, tongue, eyes or face
+
+6. tummy pain, feeling sick, vomiting or diarrhoea
+
+7. dry, red and cracked skin
+
+total: 28
+
+Cough:
+
+1. A chesty or congested cough is loose and accompanied by a buildup of mucus or phlegm in the lungs. 
+
+2. Coughs where no mucus or phlegm is present.
+
+total: 2
+
+Cold-Flu:
+ 
+1. nasal congestion 
+2. runny nose 
+3. sneezing 
+4. fever 
+5. headache 
+6. body aches 
+7. sore throat 
+8. cough
+9. chest congestion.
+
+total: 9
+
+Asthma:
+
+1. Shortness of breath 
+2. Wheezing
+
+total: 2
+
+Oral Health:
+
+1. senstivity
+2. Dealing with pain from toothaches or mouth sores caused by canker sores, cold sores, gum sores, cheek bites, or braces is not fun. 
+
+total: 2
