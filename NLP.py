@@ -1,19 +1,26 @@
-symptoms = {"fever": {"question": {"duration": "How long you're having it?", "severity": "What is the temperature?"}},
-            "cough": {"question": {"duration": "How long you're having cough?", "severity": "is it dry or wet?"}}}
+import json
 
-symplst = ["fever","cough"]
-symp_details = {}
+with open('intents.json') as file:
+    data = json.load(file)
+
+
+symplst = ["fever","chest pain"]
 my_symp = {}
 
 for x in symplst:
-    #if x in symptoms.keys():
-        print(symptoms[x]["question"]["duration"])
+        symp_details = {}
+
+        print(data["symptoms"][x]["question"]["duration"])
         symp_details["duration"] = input()
         print(symp_details)
-        print(symptoms[x]["question"]["severity"])
+        print(data["symptoms"][x]["question"]["severity"])
         symp_details["severity"] = input()
         my_symp[x] = symp_details
-        print(my_symp)
-   # else:
-        print("no match")
+
+print(my_symp)
+
+
+
+#print(data['symptoms']['fever']['question']['duration'])
+
 

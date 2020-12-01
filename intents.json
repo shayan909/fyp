@@ -1,0 +1,26 @@
+{"symptoms": {
+              "fever": {"question": {"duration": "From how many days you're having fever?",
+                "severity": "What is your body temperature?"}},
+
+               "cough": {"question": {"duration": "are you having cough for more than 3 weeks?",
+                 "severity": "do you cough blood or colored mucus?"}},
+
+               "chest discomfort": {"question": {"duration": "how long you're having chest discomfort?",
+                 "severity": "Are you having any of these: Chest tightness/Pressure, Nausea, Shortness of breath or cold sweats"}},
+
+               "wheezing": {"question": {"duration": "How many days you're experiencing wheezing?",
+                 "severity": "is it accompanied with chest pain, shortness of breath?"}},
+
+               "sore throat": {"question": {"duration": "How long you're having cough?",
+                 "severity": "do you have blood in mucus"}},
+
+               "headache": {"question": {"duration": "How long you're having cough?",
+                 "severity": "do you have any of these slurred speech, a change in vision, problems moving your arms or legs, loss of balance, confusion, or memory loss with your headache?"}},
+
+               "loss of smell": {"question": {"duration": "How long you're having loss of smell?",
+                 "severity": "do you have any other flu like symptoms?"}},
+
+               "chest pain": {"question": {"duration": "are you having chest discomfort for more than 10 minutes or several days?",
+                 "severity": "Are you having any of these: Chest tightness/Pressure, Nausea, Shortness of breath or cold sweats"}}
+             }
+}

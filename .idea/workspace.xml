@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -10,7 +13,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation alpha">
+    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation alpha1">
+      <change afterPath="$PROJECT_DIR$/NamedEN_Extraction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/intents.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NLP.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLP.py" afterDir="false" />
     </list>
@@ -29,6 +34,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/NLP.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="1kxJx5kcjNXAJnu8MWBfMi5xug9" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,6 +47,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings>
+        <option name="useSoftWraps" value="true" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunManager" selected="Python.NLP (1)">
     <configuration name="NLP (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -83,9 +98,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="NamedEN_Extraction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NamedEN_Extraction.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.NLP (1)" />
+        <item itemvalue="Python.NamedEN_Extraction" />
       </list>
     </recent_temporary>
   </component>
@@ -105,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606749790885</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="question generation alpha1">
+      <created>1606752514497</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606752514497</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,29 +166,34 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="question generation alpha" />
-    <option name="LAST_COMMIT_MESSAGE" value="question generation alpha" />
+    <MESSAGE value="question generation alpha1" />
+    <option name="LAST_COMMIT_MESSAGE" value="question generation alpha1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="250" y="75" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606750624791">
+    <state x="422" y="92" key="#Inspections" timestamp="1606801323788">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="250" y="75" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606750624791" />
-    <state width="1573" height="207" key="GridCell.Tab.0.bottom" timestamp="1606752389526">
+    <state x="422" y="92" key="#Inspections/0.0.1600.860@0.0.1600.860" timestamp="1606801323788" />
+    <state x="250" y="75" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606797502116">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
-    <state width="1573" height="207" key="GridCell.Tab.0.center" timestamp="1606752389526">
+    <state x="250" y="75" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606797502116" />
+    <state width="1573" height="204" key="GridCell.Tab.0.bottom" timestamp="1606808394446">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
-    <state width="1573" height="207" key="GridCell.Tab.0.left" timestamp="1606752389526">
+    <state width="1573" height="204" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
+    <state width="1573" height="204" key="GridCell.Tab.0.center" timestamp="1606808394446">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
-    <state width="1573" height="207" key="GridCell.Tab.0.right" timestamp="1606752389526">
+    <state width="1573" height="204" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
+    <state width="1573" height="204" key="GridCell.Tab.0.left" timestamp="1606808394446">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="207" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606752389526" />
+    <state width="1573" height="204" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
+    <state width="1573" height="204" key="GridCell.Tab.0.right" timestamp="1606808394446">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1573" height="204" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
     <state width="1573" height="259" key="GridCell.Tab.1.bottom" timestamp="1606752038907">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -165,10 +214,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="299" y="72" width="998" height="708" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1606739875404" />
-    <state x="292" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606749900332">
+    <state x="292" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606752545811">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606749900332" />
+    <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606752545811" />
     <state x="262" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606752022610">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
