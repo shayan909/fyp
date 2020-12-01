@@ -14,8 +14,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation beta">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NLP.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLP.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/intents.json" beforeDir="false" afterPath="$PROJECT_DIR$/intents.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606814031128</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="question generation beta">
+      <created>1606825104931</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606825104931</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,10 +226,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="299" y="72" width="998" height="708" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1606739875404" />
-    <state x="292" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606825077544">
+    <state x="292" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606825116252">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606825077544" />
+    <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606825116252" />
     <state x="262" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606752022610">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

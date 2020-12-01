@@ -33,11 +33,11 @@
                "loss of smell": {"question": {"duration": "How long you're having loss of smell?",
                  "severity": "do you have any other flu like symptoms?\n 1. Yes 2. No",
                "answer1": ["few hours", "few days", "more than 1 week"],
-                "answer2": ["danger","no"]}},
+                "answer2": ["danger","ok"]}},
 
                "chest pain": {"question": {"duration": "are you having chest discomfort for more than 10 minutes or several days?",
-                 "severity": "Are you having any of these: Chest tightness/Pressure, Nausea, Shortness of breath or cold sweats",
+                 "severity": "Are you having any of these:\n 1. Chest tightness/Pressure 2. Nausea 3. Shortness of breath 4. cold sweats",
                "answer1": ["few hours", "few days", "more than 1 week"],
-               "answer2": ["chest tightness","nausea","shortness of breath","cold sweats"]}}
+               "answer2": ["danger","danger","danger","danger"]}}
              }
 }
