@@ -1,26 +1,43 @@
 {"symptoms": {
-              "fever": {"question": {"duration": "From how many days you're having fever?",
-                "severity": "What is your body temperature?"}},
+              "fever": {"question": {"duration": "For how long you're having fever? \n 1. Few hours 2. Few days 3. more than 1 week",
+                "severity": "What is your body temperature?\n 1. 95-97 2. 98-99 3. 100-101 4. greater",
+                "answer1": ["few hours", "few days", "more than 1 week"],
+                "answer2": ["ok", "ok", "ok","danger"]
+              }},
 
-               "cough": {"question": {"duration": "are you having cough for more than 3 weeks?",
-                 "severity": "do you cough blood or colored mucus?"}},
+               "cough": {"question": {"duration": "for how long you're having cough?\n 1. few hours 2. few days 3. more than 1 week 4. more than 3 weeks",
+                 "severity": "do you cough blood or colored mucus?\n 1. Yes 2. No",
+               "answer1": ["few hours", "few days", "more than 1 week"],
+                "answer2": ["danger","ok"]}},
 
-               "chest discomfort": {"question": {"duration": "how long you're having chest discomfort?",
-                 "severity": "Are you having any of these: Chest tightness/Pressure, Nausea, Shortness of breath or cold sweats"}},
+               "chest discomfort": {"question": {"duration": "how long you're having chest discomfort?\n 1. less than 10 mins 2. more than few hours 3. few days",
+                 "severity": "Are you having any of these: \n 1. Chest tightness/Pressure 2. Nausea 3. Shortness of breath 4. cold sweats 5. No?",
+                  "answer1": ["less than 10 min", "more than few hours", "few days"],
+                  "answer2": ["danger","danger","danger","danger","ok"]}},
 
-               "wheezing": {"question": {"duration": "How many days you're experiencing wheezing?",
-                 "severity": "is it accompanied with chest pain, shortness of breath?"}},
+               "wheezing": {"question": {"duration": "for how long you're experiencing wheezing?\n 1. few hours 2. few days 3. more than 1 week",
+                 "severity": "is it accompanied with \n1. chest pain 2. shortness of breath 3. No?",
+               "answer1": ["few hours", "few days", "more than 1 week"],
+                "answer2": ["danger","danger","ok"]}},
 
                "sore throat": {"question": {"duration": "How long you're having cough?",
-                 "severity": "do you have blood in mucus"}},
+                 "severity": "do you have blood in mucus\n 1. Yes 2. No",
+               "answer1": ["few hours", "few days", "more than 1 week"],
+                 "answer2": ["danger","ok"]}},
 
                "headache": {"question": {"duration": "How long you're having cough?",
-                 "severity": "do you have any of these slurred speech, a change in vision, problems moving your arms or legs, loss of balance, confusion, or memory loss with your headache?"}},
+                 "severity": "do you have any of these slurred speech, a change in vision, problems moving your arms or legs, loss of balance, confusion, or memory loss with your headache?\n 1. Yes 2. No",
+               "answer1": ["few hours", "few days", "more than 1 week"],
+               "answer2": ["danger","ok"]}},
 
                "loss of smell": {"question": {"duration": "How long you're having loss of smell?",
-                 "severity": "do you have any other flu like symptoms?"}},
+                 "severity": "do you have any other flu like symptoms?\n 1. Yes 2. No",
+               "answer1": ["few hours", "few days", "more than 1 week"],
+                "answer2": ["danger","no"]}},
 
                "chest pain": {"question": {"duration": "are you having chest discomfort for more than 10 minutes or several days?",
-                 "severity": "Are you having any of these: Chest tightness/Pressure, Nausea, Shortness of breath or cold sweats"}}
+                 "severity": "Are you having any of these: Chest tightness/Pressure, Nausea, Shortness of breath or cold sweats",
+               "answer1": ["few hours", "few days", "more than 1 week"],
+               "answer2": ["chest tightness","nausea","shortness of breath","cold sweats"]}}
              }
 }

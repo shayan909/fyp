@@ -13,11 +13,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation alpha1">
-      <change afterPath="$PROJECT_DIR$/NamedEN_Extraction.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/intents.json" afterDir="false" />
+    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation beta">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NLP.py" beforeDir="false" afterPath="$PROJECT_DIR$/NLP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/intents.json" beforeDir="false" afterPath="$PROJECT_DIR$/intents.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606752514497</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="question generation beta">
+      <created>1606814031128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606814031128</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,7 +173,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="question generation alpha" />
     <MESSAGE value="question generation alpha1" />
-    <option name="LAST_COMMIT_MESSAGE" value="question generation alpha1" />
+    <MESSAGE value="question generation beta" />
+    <option name="LAST_COMMIT_MESSAGE" value="question generation beta" />
   </component>
   <component name="WindowStateProjectService">
     <state x="422" y="92" key="#Inspections" timestamp="1606801323788">
@@ -178,22 +185,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="250" y="75" width="1099" height="767" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1606797502116" />
-    <state width="1573" height="204" key="GridCell.Tab.0.bottom" timestamp="1606808394446">
+    <state width="1573" height="204" key="GridCell.Tab.0.bottom" timestamp="1606825080166">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="204" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
-    <state width="1573" height="204" key="GridCell.Tab.0.center" timestamp="1606808394446">
+    <state width="1573" height="204" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606825080166" />
+    <state width="1573" height="204" key="GridCell.Tab.0.center" timestamp="1606825080161">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="204" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
-    <state width="1573" height="204" key="GridCell.Tab.0.left" timestamp="1606808394446">
+    <state width="1573" height="204" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606825080161" />
+    <state width="1573" height="204" key="GridCell.Tab.0.left" timestamp="1606825080161">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="204" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
-    <state width="1573" height="204" key="GridCell.Tab.0.right" timestamp="1606808394446">
+    <state width="1573" height="204" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606825080161" />
+    <state width="1573" height="204" key="GridCell.Tab.0.right" timestamp="1606825080161">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1573" height="204" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606808394446" />
+    <state width="1573" height="204" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606825080161" />
     <state width="1573" height="259" key="GridCell.Tab.1.bottom" timestamp="1606752038907">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -214,18 +221,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="299" y="72" width="998" height="708" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1606739875404" />
-    <state x="292" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606752545811">
+    <state x="292" y="97" key="Vcs.Push.Dialog.v2" timestamp="1606825077544">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606752545811" />
+    <state x="292" y="97" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1606825077544" />
     <state x="262" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606752022610">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="262" y="93" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1600.860@0.0.1600.860" timestamp="1606752022610" />
-    <state x="463" y="180" key="search.everywhere.popup" timestamp="1606739614483">
+    <state x="463" y="180" width="840" height="1034" key="search.everywhere.popup" timestamp="1606824489064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1606739614483" />
+    <state x="463" y="180" width="840" height="1034" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1606824489064" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
