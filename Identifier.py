@@ -37,4 +37,3 @@ MixedSymptoms1 = MixedSymptoms.predictDisease(inputSymptoms, mixedSymptoms)
 #
 # print(X)
 # print(y)
-#print("hhel")
