@@ -30,7 +30,7 @@
                "answer1": ["ok", "ok", "danger"],
                "answer2": ["danger","ok"]}},
 
-               "loss of smell": {"question": {"duration": "How long you're having loss of smell?",
+               "loss of smell": {"question": {"duration": "How long you're having loss of smell\n 1. few hours 2. few days 3. few weeks?",
                  "severity": "do you have any other flu like symptoms?\n 1. Yes 2. No",
                "answer1": ["ok", "ok", "ok"],
                 "answer2": ["danger","ok"]}},

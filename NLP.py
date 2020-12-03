@@ -37,6 +37,8 @@ def critical_symptoms():
                         choice2 = int(input())
                         symp_details["severity"] = data["symptoms"][x]["question"]["answer2"][choice2 - 1]
                         my_symp[x] = symp_details
+                else:
+                    continue;
 
 
 #print(my_symp)
