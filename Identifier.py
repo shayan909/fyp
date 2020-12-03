@@ -37,3 +37,4 @@ MixedSymptoms1 = MixedSymptoms.predictDisease(inputSymptoms, mixedSymptoms)
 #
 # print(X)
 # print(y)
+#pycharm git testing
