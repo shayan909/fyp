@@ -13,9 +13,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation beta">
-      <change beforePath="$PROJECT_DIR$/intents.json" beforeDir="false" afterPath="$PROJECT_DIR$/intents.json" afterDir="false" />
-    </list>
+    <list default="true" id="f60ca93e-56e4-448c-bae5-b4accd7f8dea" name="Default Changelist" comment="question generation beta" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
