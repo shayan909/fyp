@@ -5,7 +5,7 @@ with open('intents.json') as file:
 
 critical_symptoms = ["fever","cough","chest discomfort","chest pain","wheezing","sore throat","headache", "loss of smell"];
 
-symplst = ["fever"]
+symplst = ["fever","cough"]
 my_symp = {}
 if symplst.sort() == critical_symptoms.sort():
         for x in symplst:
@@ -20,9 +20,19 @@ if symplst.sort() == critical_symptoms.sort():
                         symp_details["severity"] = data["symptoms"][x]["question"]["answer2"][choice2 - 1]
                         my_symp[x] = symp_details
 
-print(my_symp)
-print("helloworld")
 
+print(my_symp)
+
+def warning():
+        concern = []
+        for x in my_symp.keys():
+                if my_symp[x]["severity"]=="danger":
+                        concern.append(x)
+        print(f"Caution!\nPlease seek immediate medical assistance for the following Symptom(s)")
+        print(*concern, sep=",")
+
+
+warning()
 
 
 #print(data['symptoms']['fever']['question']['duration'])
