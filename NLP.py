@@ -8,12 +8,15 @@ with open('intents.json') as file:
 #disease_model = 'en_ner_bc5cdr_md';
 #medicine_model = 'en_ner_bionlp13cg_md';
 
-nlp = spacy.load('en_core_sci_lg')
+nlp = spacy.load('en_ner_bc5cdr_md')
 inp = input("Please describe your symptoms\n")
 doc = nlp(inp)
 
+my_symp = {} #user-entered-symptoms
+symplst = [] #NER symptoms
+medical_details = [] #medical_details extracted from user via NER
+drug_history = []
 
-symplst = []
 
 def show_ents(doc):
 
@@ -25,7 +28,7 @@ def show_ents(doc):
         print("no ents found")
 
 
-my_symp = {}
+
 def critical_symptoms():
         critical_symptoms = ["fever", "cough", "chest discomfort", "chest pain", "wheezing", "sore throat", "headache",
                              "loss of smell"];
@@ -45,6 +48,24 @@ def critical_symptoms():
                     continue;
 
 
+def medical_history():
+    nlp = spacy.load('en_core_sci_lg')
+    med_hist = input("mention your medical condition(s) if any\n")
+    drg_hist = input("\nPlease mention drug names you are currently taking if any\n")
+    for i in range(2):
+        if i == 0:
+            doc = nlp(med_hist)
+            if doc.ents:
+                for ent in doc.ents:
+                    medical_details.append(str(ent.text))
+        elif i == 1:
+            doc = nlp(drg_hist)
+            if doc.ents:
+                for ent in doc.ents:
+                    drug_history.append(str(ent.text));
+    print(medical_details)
+    print(drug_history)
+
 
 #print(my_symp)
 
@@ -54,13 +75,14 @@ def warning():
                 if my_symp[x]["severity"]=="danger" or my_symp[x]["duration"]=="danger":
                         concern.append(x)
         if len(concern)>=1:
-            print(f"Caution!\nPlease seek immediate medical assistance for the following Symptom(s)")
+            print(f"\nCaution!\nPlease seek immediate medical assistance for the following Symptom(s)")
             print(*concern, sep=",")
 
 
 
 show_ents(doc)
 critical_symptoms()
+medical_history()
 warning()
 
 #print(data['symptoms']['fever']['question']['duration'])

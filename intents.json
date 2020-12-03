@@ -25,7 +25,7 @@
                "answer1": ["ok", "ok", "ok","danger"],
                  "answer2": ["danger","ok"]}},
 
-               "headache": {"question": {"duration": "How long you're having cough?",
+               "headache": {"question": {"duration": "How long you're having headache 1. few minutes 2. few hours 3. for days?",
                  "severity": "do you have any of these slurred speech, a change in vision, problems moving your arms or legs, loss of balance, confusion, or memory loss with your headache?\n 1. Yes 2. No",
                "answer1": ["ok", "ok", "danger"],
                "answer2": ["danger","ok"]}},
@@ -35,9 +35,9 @@
                "answer1": ["ok", "ok", "ok"],
                 "answer2": ["danger","ok"]}},
 
-               "chest pain": {"question": {"duration": "are you having chest discomfort for more than\n 1. few minutes 2. few hours 3. few days 4. few weeks?",
+               "chest pain": {"question": {"duration": "are you having chest pain for more than\n 1. few minutes 2. few hours 3. few days 4. few weeks 5. No?",
                  "severity": "Are you having any of these:\n 1. Chest tightness/Pressure 2. Nausea 3. Shortness of breath 4. cold sweats",
                "answer1": ["ok", "danger", "danger","danger"],
-               "answer2": ["danger","danger","danger","danger"]}}
+               "answer2": ["danger","danger","danger","danger","ok"]}}
              }
 }
