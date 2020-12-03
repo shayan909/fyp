@@ -20,9 +20,9 @@
                "answer1": ["ok", "ok", "danger"],
                 "answer2": ["danger","danger","ok"]}},
 
-               "sore throat": {"question": {"duration": "How long you're having cough?",
+               "sore throat": {"question": {"duration": "How long you're having sore throat\n 1. few hours 2. few days 3. more than 1 week 4. more than 3 weeks?",
                  "severity": "do you have blood in mucus\n 1. Yes 2. No",
-               "answer1": ["ok", "ok", "danger"],
+               "answer1": ["ok", "ok", "ok","danger"],
                  "answer2": ["danger","ok"]}},
 
                "headache": {"question": {"duration": "How long you're having cough?",
