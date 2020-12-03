@@ -21,7 +21,7 @@ if symplst.sort() == critical_symptoms.sort():
                         my_symp[x] = symp_details
 
 print(my_symp)
-#print(my_symp)
+print("helloworld")
 
 
 
