@@ -3,8 +3,24 @@ import json
 with open('intents.json') as file:
     data = json.load(file)
 
+import spacy
 
-symplst = ["fever","cough"]
+nlp = spacy.load('en_ner_bc5cdr_md')
+
+inp = input("describe symptoms")
+doc= nlp(inp)
+
+symplst = []
+
+def show_ents(doc):
+    if doc.ents:
+        for ent in doc.ents:
+            symplst.append(str(ent.text))
+        print(symplst)
+    else:
+        print("no ents found")
+
+
 my_symp = {}
 def critical_symptoms():
         critical_symptoms = ["fever", "cough", "chest discomfort", "chest pain", "wheezing", "sore throat", "headache",
@@ -32,7 +48,7 @@ def warning():
                         concern.append(x)
         print(f"Caution!\nPlease seek immediate medical assistance for the following Symptom(s)")
         print(*concern, sep=",")
-
+show_ents(doc)
 critical_symptoms()
 warning()
 
