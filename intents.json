@@ -25,7 +25,8 @@
                "answer1": ["ok", "ok", "ok","danger"],
                  "answer2": ["danger","ok"]}},
 
-               "headache": {"question": {"duration": "How long you're having headache 1. few minutes 2. few hours 3. for days?",
+               "headache": {"question": {"duration": "How long you're having headache 1. few minutes 2. few hours 3.  days?",
+
                  "severity": "do you have any of these slurred speech, a change in vision, problems moving your arms or legs, loss of balance, confusion, or memory loss with your headache?\n 1. Yes 2. No",
                "answer1": ["ok", "ok", "danger"],
                "answer2": ["danger","ok"]}},

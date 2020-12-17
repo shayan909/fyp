@@ -1,5 +1,10 @@
 import json
+from typing import Dict, Any
 import spacy
+from nltk.tokenize import WordPunctTokenizer
+from nltk.tokenize.treebank import TreebankWordDetokenizer
+from spellchecker import SpellChecker
+
 
 with open('intents.json') as file:
     data = json.load(file)
@@ -8,8 +13,32 @@ with open('intents.json') as file:
 #disease_model = 'en_ner_bc5cdr_md';
 #medicine_model = 'en_ner_bionlp13cg_md';
 
-nlp = spacy.load('en_ner_bc5cdr_md')
-inp = input("Please describe your symptoms\n")
+nlp = spacy.load('en_core_sci_lg')
+inp: str = input("Please describe your symptoms\n")
+
+
+
+#Spelling Correction
+arr= dict()
+myinp = WordPunctTokenizer().tokenize(inp) #tokenize input
+spell = SpellChecker() #initialize spellchecker method
+misspelled = spell.unknown(myinp)
+mistake = list(misspelled)
+mistake.sort()
+correct_spell = []
+for i in range(len(mistake)):
+    arr[i]=spell.candidates(mistake[i])
+
+x: int
+for x in range(len(arr)):
+     for correct in arr[x]:
+         if correct in data["symptoms"]:
+             correct_spell.append(correct)
+
+for w in range(len(correct_spell)):
+    inp=inp.replace(mistake[w],correct_spell[w])
+print(inp)
+
 doc = nlp(inp)
 
 my_symp = {} #user-entered-symptoms
@@ -19,6 +48,7 @@ drug_history = []
 
 
 def show_ents(doc):
+
 
     if doc.ents:
         for ent in doc.ents:
@@ -82,6 +112,8 @@ def warning():
 
 show_ents(doc)
 critical_symptoms()
+
+print("Please wait")
 medical_history()
 warning()
 
