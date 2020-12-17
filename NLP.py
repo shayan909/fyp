@@ -1,7 +1,7 @@
 import json
 from typing import Dict, Any
 import spacy
-from nltk.tokenize import WordPunctTokenizer
+from nltk.tokenize import WordPunctTokenizer, word_tokenize
 from nltk.tokenize.treebank import TreebankWordDetokenizer
 from spellchecker import SpellChecker
 
@@ -19,25 +19,29 @@ inp: str = input("Please describe your symptoms\n")
 
 
 #Spelling Correction
-arr= dict()
-myinp = WordPunctTokenizer().tokenize(inp) #tokenize input
+arr= []
+myinp = word_tokenize(inp) #tokenize input
 spell = SpellChecker() #initialize spellchecker method
+spell.word_frequency.load_text_file("strings.txt")
 misspelled = spell.unknown(myinp)
 mistake = list(misspelled)
-mistake.sort()
+print(mistake)
+#print(misspelled)
 correct_spell = []
+
 for i in range(len(mistake)):
-    arr[i]=spell.candidates(mistake[i])
-
-x: int
-for x in range(len(arr)):
-     for correct in arr[x]:
-         if correct in data["symptoms"]:
-             correct_spell.append(correct)
-
-for w in range(len(correct_spell)):
-    inp=inp.replace(mistake[w],correct_spell[w])
+    for x in spell.candidates(mistake[i]):
+        if x in data["symptoms"]:
+            inp = inp.replace(mistake[i],x)
+        # else:
+        #     inp = inp.replace(mistake[])
+        # #     if word in data["symptoms"]:
+        #         print(word)
+        #     # correct_spell.append(correct)
 print(inp)
+# for w in range(len(correct_spell)):
+#     inp=inp.replace(mistake[w],correct_spell[w])
+# print(inp)
 
 doc = nlp(inp)
 
@@ -48,8 +52,6 @@ drug_history = []
 
 
 def show_ents(doc):
-
-
     if doc.ents:
         for ent in doc.ents:
             symplst.append(str(ent.text))
@@ -61,7 +63,7 @@ def show_ents(doc):
 
 def critical_symptoms():
         critical_symptoms = ["fever", "cough", "chest discomfort", "chest pain", "wheezing", "sore throat", "headache",
-                             "loss of smell"];
+                             "loss of smell","high fever"];
 
         if symplst.sort() == critical_symptoms.sort():
             for x in symplst:

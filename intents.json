@@ -4,6 +4,11 @@
                 "answer1": ["ok", "ok", "danger"],
                 "answer2": ["ok", "ok", "ok","danger"]
               }},
+              "high fever": {"question": {"duration": "For how long you're having fever? \n 1. Few hours 2. Few days 3. more than 1 week",
+                "severity": "What is your body temperature?\n 1. 95-97 2. 98-99 3. 100-101 4. greater",
+                "answer1": ["ok", "ok", "danger"],
+                "answer2": ["ok", "ok", "ok","danger"]
+              }},
 
                "cough": {"question": {"duration": "for how long you're having cough?\n 1. few hours 2. few days 3. more than 1 week 4. more than 3 weeks",
                  "severity": "do you cough blood or colored mucus?\n 1. Yes 2. No",
