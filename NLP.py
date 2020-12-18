@@ -10,10 +10,10 @@ with open('intents.json') as file:
     data = json.load(file)
 
 
-#disease_model = 'en_ner_bc5cdr_md';
+#disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
 #medicine_model = 'en_ner_bionlp13cg_md';
 
-nlp = spacy.load('en_core_sci_lg')
+nlp = spacy.load('en_ner_bc5cdr_md')
 inp: str = input("Please describe your symptoms\n")
 
 
@@ -27,10 +27,11 @@ mistake = list(misspelled)
 correct_spell=[]
 print(mistake)
 
+with open('strings.txt') as f:
+    df = f.readlines()
+
 for i in range(len(mistake)):
     for words in spell.candidates(mistake[i]):
-        with open('strings.txt') as f:
-            df = f.readlines()
             for line in df:
                 if words in line:
                     continue;
@@ -43,18 +44,31 @@ my_symp = {} #user-entered-symptoms
 symplst =[] #NER symptoms
 medical_details = [] #medical_details extracted from user via NER
 drug_history = []
-
+final_symps=[]
 
 def show_ents(doc):
+
+    temp_lst = []
     if doc.ents:
         for ent in doc.ents:
             symplst.append(str(ent.text))
-        for split in range(len(symplst)):
-            x = str(symplst[split]).split(" ")
-            if len(x) > 1:
-                print(x[0] + "_" + x[1])
+        print(symplst)
+        for i in symplst:
+            temp_lst=str(i).split(" ")
+            if len(temp_lst) > 1:
+                s = "_"
+                s = s.join(temp_lst)
+                temp_lst=[]
+                final_symps.append(s)
             else:
-                continue;
+                final_symps.append(i)
+        print(final_symps)
+        # for split in range(len(symplst)):
+        #     x = str(symplst[split]).split(" ")
+        #     if len(x) > 1:
+        #         print(x[0] + "_" + x[1])
+        #     else:
+        #         continue;
     else:
         print("no ents found")
 
