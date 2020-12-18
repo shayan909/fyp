@@ -1,5 +1,5 @@
 import json
-from typing import Dict, Any
+from typing import Dict, Any, List
 import spacy
 from nltk.tokenize import WordPunctTokenizer, word_tokenize
 from nltk.tokenize.treebank import TreebankWordDetokenizer
@@ -19,34 +19,28 @@ inp: str = input("Please describe your symptoms\n")
 
 
 #Spelling Correction
-arr= []
 myinp = word_tokenize(inp) #tokenize input
 spell = SpellChecker() #initialize spellchecker method
 spell.word_frequency.load_text_file("strings.txt")
 misspelled = spell.unknown(myinp)
 mistake = list(misspelled)
+correct_spell=[]
 print(mistake)
-#print(misspelled)
-correct_spell = []
 
 for i in range(len(mistake)):
-    for x in spell.candidates(mistake[i]):
-        if x in data["symptoms"]:
-            inp = inp.replace(mistake[i],x)
-        # else:
-        #     inp = inp.replace(mistake[])
-        # #     if word in data["symptoms"]:
-        #         print(word)
-        #     # correct_spell.append(correct)
-print(inp)
-# for w in range(len(correct_spell)):
-#     inp=inp.replace(mistake[w],correct_spell[w])
-# print(inp)
+    for words in spell.candidates(mistake[i]):
+        with open('strings.txt') as f:
+            df = f.readlines()
+            for line in df:
+                if words in line:
+                    continue;
+    inp = inp.replace(mistake[i],words)
 
+print(inp)
 doc = nlp(inp)
 
 my_symp = {} #user-entered-symptoms
-symplst = [] #NER symptoms
+symplst =[] #NER symptoms
 medical_details = [] #medical_details extracted from user via NER
 drug_history = []
 
@@ -55,7 +49,12 @@ def show_ents(doc):
     if doc.ents:
         for ent in doc.ents:
             symplst.append(str(ent.text))
-        print(symplst)
+        for split in range(len(symplst)):
+            x = str(symplst[split]).split(" ")
+            if len(x) > 1:
+                print(x[0] + "_" + x[1])
+            else:
+                continue;
     else:
         print("no ents found")
 
@@ -64,6 +63,7 @@ def show_ents(doc):
 def critical_symptoms():
         critical_symptoms = ["fever", "cough", "chest discomfort", "chest pain", "wheezing", "sore throat", "headache",
                              "loss of smell","high fever"];
+
 
         if symplst.sort() == critical_symptoms.sort():
             for x in symplst:
@@ -115,9 +115,9 @@ def warning():
 show_ents(doc)
 critical_symptoms()
 
-print("Please wait")
-medical_history()
-warning()
+# print("Please wait")
+# medical_history()
+# warning()
 
 #print(data['symptoms']['fever']['question']['duration'])
 
