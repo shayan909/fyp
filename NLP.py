@@ -4,6 +4,10 @@ import spacy
 from nltk.tokenize import WordPunctTokenizer, word_tokenize
 from nltk.tokenize.treebank import TreebankWordDetokenizer
 from spellchecker import SpellChecker
+from spacy.tokens import Span
+import numpy as np
+import symptoms as s_list
+
 
 
 with open('intents.json') as file:
@@ -27,17 +31,14 @@ mistake = list(misspelled)
 correct_spell=[]
 print(mistake)
 
-with open('strings.txt') as f:
-    df = f.readlines()
+# with open('strings.txt') as f:
+#     df = f.readlines()
 
 for i in range(len(mistake)):
-    for words in spell.candidates(mistake[i]):
-            for line in df:
-                if words in line:
-                    continue;
-    inp = inp.replace(mistake[i],words)
+    for word in np.array(list(spell.candidates(mistake[i]))):
+        if word in s_list.symptoms:
+            inp = inp.replace(mistake[i],word)
 
-print(inp)
 doc = nlp(inp)
 
 my_symp = {} #user-entered-symptoms
@@ -47,13 +48,21 @@ drug_history = []
 final_symps=[]
 
 def show_ents(doc):
-
+    testlst = []
     temp_lst = []
     if doc.ents:
         for ent in doc.ents:
+            print(ent.label_)
             symplst.append(str(ent.text))
-        print(symplst)
-        for i in symplst:
+        x: str = ' '.join(symplst)
+        x = x.split(' ')
+        for w in range(len(x) - 1):
+            if x[w] == 'fever':
+                testlst.append(x[w])
+            elif x[w] + ' ' + x[w + 1] == 'chest pain':
+                testlst.append(x[w] + ' ' + x[w + 1])
+        print(testlst)
+        for i in testlst:
             temp_lst=str(i).split(" ")
             if len(temp_lst) > 1:
                 s = "_"
@@ -62,7 +71,7 @@ def show_ents(doc):
                 final_symps.append(s)
             else:
                 final_symps.append(i)
-        print(final_symps)
+            print(final_symps)
         # for split in range(len(symplst)):
         #     x = str(symplst[split]).split(" ")
         #     if len(x) > 1:
@@ -72,6 +81,7 @@ def show_ents(doc):
     else:
         print("no ents found")
 
+print(final_symps)
 
 
 def critical_symptoms():
