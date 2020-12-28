@@ -8,46 +8,43 @@ from spacy.tokens import Span
 import numpy as np
 import symptoms as s_list
 
+nlp = spacy.load('en_core_sci_lg')
+#disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
+#medicine_model = 'en_ner_bionlp13cg_md';
 
 
 with open('intents.json') as file:
     data = json.load(file)
-
-
-#disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
-#medicine_model = 'en_ner_bionlp13cg_md';
-
-nlp = spacy.load('en_core_sci_lg')
-inp: str = input("Please describe your symptoms\n")
-
-
-
-#Spelling Correction
-myinp = word_tokenize(inp) #tokenize input
-spell = SpellChecker() #initialize spellchecker method
-spell.word_frequency.load_text_file("strings.txt")
-misspelled = spell.unknown(myinp)
-mistake = list(misspelled)
-correct_spell=[]
-print("Mistake")
-print(mistake)
-
-# with open('strings.txt') as f:
-#     df = f.readlines()
-
-for i in range(len(mistake)):
-    for word in list(spell.candidates(mistake[i])):
-        if word in s_list.symptoms:
-            inp = inp.replace(mistake[i],word)
-print(inp)
-doc = nlp(inp)
-
 my_symp = {} #user-entered-symptoms
 symplst =[] #NER symptoms
 medical_details = [] #medical_details extracted from user via NER
 drug_history = []
 final_symps=[]
 testlst = []
+
+
+
+inp: str = input("Please describe your symptoms\n")
+
+
+def SpellCorrection(inp):
+    #Spelling Correction
+    myinp = word_tokenize(inp) #tokenize input
+    spell = SpellChecker() #initialize spellchecker method
+    spell.word_frequency.load_text_file("strings.txt")
+    misspelled = spell.unknown(myinp)
+    mistake = list(misspelled)
+    correct_spell=[]
+    print("Mistake")
+    print(mistake)
+
+    for i in range(len(mistake)):
+        for word in list(spell.candidates(mistake[i])):
+            if word in s_list.symptoms:
+                inp = inp.replace(mistake[i],word)
+    print(inp)
+    doc = nlp(inp)
+    show_ents(doc)
 
 
 def show_ents(doc):
@@ -68,7 +65,6 @@ def show_ents(doc):
                 if x[split_word-1]+' '+x[split_word] in s_list.symptoms:
                    xlst.append(x[split_word-1]+' '+x[split_word])
 
-        print(xlst)
 
         for i in xlst:
             temp_lst=str(i).split(" ")
@@ -80,7 +76,7 @@ def show_ents(doc):
             else:
                 final_symps.append(i)
     else:
-        print("no ents found")
+        print("Sorry I wasn't able to identify your symptoms could you please rephrase")
     print(final_symps)
     if len(final_symps) > 0:
         critical_symptoms(xlst)
@@ -136,8 +132,7 @@ def warning():
             print(*concern, sep=",")
 
 
-
-show_ents(doc)
+SpellCorrection(inp)
 
 # print("Please wait")
 # medical_history()
