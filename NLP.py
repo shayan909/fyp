@@ -17,7 +17,7 @@ with open('intents.json') as file:
 #disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
 #medicine_model = 'en_ner_bionlp13cg_md';
 
-nlp = spacy.load('en_ner_bc5cdr_md')
+nlp = spacy.load('en_core_sci_lg')
 inp: str = input("Please describe your symptoms\n")
 
 
@@ -29,16 +29,17 @@ spell.word_frequency.load_text_file("strings.txt")
 misspelled = spell.unknown(myinp)
 mistake = list(misspelled)
 correct_spell=[]
+print("Mistake")
 print(mistake)
 
 # with open('strings.txt') as f:
 #     df = f.readlines()
 
 for i in range(len(mistake)):
-    for word in np.array(list(spell.candidates(mistake[i]))):
+    for word in list(spell.candidates(mistake[i])):
         if word in s_list.symptoms:
             inp = inp.replace(mistake[i],word)
-
+print(inp)
 doc = nlp(inp)
 
 my_symp = {} #user-entered-symptoms
@@ -46,23 +47,30 @@ symplst =[] #NER symptoms
 medical_details = [] #medical_details extracted from user via NER
 drug_history = []
 final_symps=[]
+testlst = []
+
 
 def show_ents(doc):
-    testlst = []
     temp_lst = []
     if doc.ents:
         for ent in doc.ents:
-            print(ent.label_)
-            symplst.append(str(ent.text))
+            symplst.append(ent.text)
+
         x: str = ' '.join(symplst)
         x = x.split(' ')
-        for w in range(len(x) - 1):
-            if x[w] == 'fever':
-                testlst.append(x[w])
-            elif x[w] + ' ' + x[w + 1] == 'chest pain':
-                testlst.append(x[w] + ' ' + x[w + 1])
-        print(testlst)
-        for i in testlst:
+        list(x)
+        print(x)
+        xlst = []
+        for split_word in range(len(x)):
+            if x[split_word] in s_list.symptoms:
+                xlst.append(x[split_word])
+            elif len(x) > split_word:
+                if x[split_word-1]+' '+x[split_word] in s_list.symptoms:
+                   xlst.append(x[split_word-1]+' '+x[split_word])
+
+        print(xlst)
+
+        for i in xlst:
             temp_lst=str(i).split(" ")
             if len(temp_lst) > 1:
                 s = "_"
@@ -71,26 +79,19 @@ def show_ents(doc):
                 final_symps.append(s)
             else:
                 final_symps.append(i)
-            print(final_symps)
-        # for split in range(len(symplst)):
-        #     x = str(symplst[split]).split(" ")
-        #     if len(x) > 1:
-        #         print(x[0] + "_" + x[1])
-        #     else:
-        #         continue;
     else:
         print("no ents found")
+    print(final_symps)
+    if len(final_symps) > 0:
+        critical_symptoms(xlst)
 
-print(final_symps)
 
-
-def critical_symptoms():
+def critical_symptoms(myList):
         critical_symptoms = ["fever", "cough", "chest discomfort", "chest pain", "wheezing", "sore throat", "headache",
                              "loss of smell","high fever"];
 
-
-        if symplst.sort() == critical_symptoms.sort():
-            for x in symplst:
+        if myList.sort() == critical_symptoms.sort():
+            for x in myList:
                 symp_details = {}
                 if x in data["symptoms"]:
                         print(data["symptoms"][x]["question"]["duration"])
@@ -137,7 +138,6 @@ def warning():
 
 
 show_ents(doc)
-critical_symptoms()
 
 # print("Please wait")
 # medical_history()

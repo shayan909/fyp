@@ -154,5 +154,7 @@
 'chest pain',
 'sputum production',
 'back pain',
-'back ache'
+'back ache',
+'chest',
+'pain'
 ]
