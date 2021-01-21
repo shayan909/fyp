@@ -7,6 +7,7 @@ from spellchecker import SpellChecker
 from spacy.tokens import Span
 import numpy as np
 import symptoms as s_list
+from neuralNetwork import check
 
 nlp = spacy.load('en_core_sci_lg')
 #disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
@@ -132,8 +133,8 @@ def warning():
             print(*concern, sep=",")
 
 
-SpellCorrection(inp)
-
+#SpellCorrection(inp)
+check("i have fever")
 # print("Please wait")
 # medical_history()
 # warning()
