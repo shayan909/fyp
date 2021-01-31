@@ -6,10 +6,15 @@ from spacy.tokens import span
 import numpy as np
 import symptoms as s_list
 from neuralNetwork import check
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
 
 nlp = spacy.load('en_core_sci_lg')
 #disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
 #medicine_model = 'en_ner_bionlp13cg_md';
+
+inp = ""
 
 
 with open('intents.json') as file:
@@ -23,7 +28,7 @@ testlst = []
 
 
 
-inp: str = input("please describe your symptoms\n")
+# inp: str = input("please describe your symptoms\n")
 
 
 def spellcorrection(inp):
@@ -42,84 +47,86 @@ def spellcorrection(inp):
             if word in s_list.symptoms:
                 inp = inp.replace(mistake[i],word)
 
-    # for symtom in x:
-    #     newLst.append(check(symtom))
-    #     print(newLst)
-
-    doc = nlp(inp)
-    show_ents(doc)
+    return inp
 
 
 def show_ents(doc):
     temp_lst = []
     newLst = []
+    flag = False
 
+    test = inp
     if doc.ents:
         for ent in doc.ents:
-            symplst.append(ent.text)
-            test = inp.replace(ent.text," ")
-        symplst.append(check(test))
-
-    else:
-        symplst.append(check(inp))
-
-    x: str = ' '.join(symplst)
-    x = x.split(' ')
-    list(x)
-
-    xlst = []
-    for split_word in range(len(x)):
-        if x[split_word] in s_list.symptoms:
-            xlst.append(x[split_word])
-        elif len(x) > split_word:
-            if x[split_word - 1] + ' ' + x[split_word] in s_list.symptoms:
-                xlst.append(x[split_word - 1] + ' ' + x[split_word])
-
-    for i in xlst:
-        temp_lst = str(i).split(" ")
-        if len(temp_lst) > 1:
-            s = "_"
-            s = s.join(temp_lst)
-            temp_lst = []
-            final_symps.append(s)
-        else:
-            final_symps.append(i)
-
-    print(symplst)
-
-    print(final_symps)
-    if len(final_symps) > 0:
-        critical_symptoms(xlst)
+            if ent.text in s_list.symptoms and ent.text != newLst:
+                newLst.append(ent.text)
+                test = test.replace(ent.text, " ")
+                flag = True
+        if check(test) not in newLst and flag != True:
+            newLst.append(check(test))
+            flag = False
 
 
-def critical_symptoms(mylist):
+        # x: str = ' '.join(symplst)
+        # x = x.split(' ')
+        # list(x)
+        #
+        # xlst = []
+        # for split_word in range(len(x)):
+        #     if x[split_word] in s_list.symptoms:
+        #         xlst.append(x[split_word])
+        #     elif len(x) > split_word:
+        #         if x[split_word - 1] + ' ' + x[split_word] in s_list.symptoms:
+        #             xlst.append(x[split_word - 1] + ' ' + x[split_word])
+        #
+        # for i in xlst:
+        #     temp_lst = str(i).split(" ")
+        #     if len(temp_lst) > 1:
+        #         s = "_"
+        #         s = s.join(temp_lst)
+        #         temp_lst = []
+        #         final_symps.append(s)
+        #     else:
+        #         final_symps.append(i)
+
+        print(newLst)
+
+        # print(final_symps)
+
+    return newLst
+
+
+def critical_symptoms(newLst):
+        symp_details = {}
+        mylist = []
+
         critical_symptoms = ["fever", "cough", "chest discomfort", "chest pain", "wheezing", "sore throat", "headache",
                              "loss of smell","high fever"];
 
-        if mylist.sort() == critical_symptoms.sort():
-            for x in mylist:
-                symp_details = {}
+
+        if newLst.sort() == critical_symptoms.sort():
+            for x in newLst:
                 if x in data["symptoms"]:
-                        print(data["symptoms"][x]["question"]["duration"])
-                        choice = int(input())
-                        symp_details["duration"]=data["symptoms"][x]["question"]["answer1"][choice-1]
-                        print(data["symptoms"][x]["question"]["severity"])
-                        choice2 = int(input())
-                        symp_details["severity"] = data["symptoms"][x]["question"]["answer2"][choice2 - 1]
-                        my_symp[x] = symp_details
+                    return data["symptoms"][x]["question"]["duration"]
                 else:
-                    continue;
+                    return "Any other symptom?"
 
 
 
-spellcorrection(inp)
 
 
-# print("please wait")
-# medical_history()
-# warning()
+                #         choice2 = int(input())
+                #         symp_details["severity"] = data["symptoms"][x]["question"]["answer2"][choice2 - 1]
+                #         my_symp[x] = symp_details
+                # else:
+                #     continue;
 
 
+def severity(disease, inp):
+    # symp_details["duration"] = data["symptoms"][newLst[0]]["question"]["answer1"][duration - 1]
+    # newLst = []
+    inp = ""
+    return data["symptoms"][disease]["question"]["severity"]
 
 def medical_history():
     nlp = spacy.load('en_core_sci_lg')
@@ -149,3 +156,52 @@ def warning():
         if len(concern)>=1:
             print(f"\ncaution!\nplease seek immediate medical assistance for the following symptom(s)")
             print(*concern, sep=",")
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/get')
+def get_bot_response():
+    inp = request.args.get('msg')
+    if inp:
+        inp = inp.lower()
+        disease = ""
+        final_symptoms = []
+        count = 0
+
+        if len(inp) > 1:
+            doc = nlp(spellcorrection(inp))
+            disease = show_ents(doc)
+            durationQuestion = critical_symptoms(disease)
+            flag = True
+            count += 1
+            if durationQuestion:
+                return durationQuestion
+        if len(inp) == 1 and count == 1:
+            sev = severity(disease, inp)
+            return sev
+
+if __name__ == "__main__":
+    app.run(debug=True)
+# disease  = ""
+# final_symptoms = []
+# count = 0
+# inp = "1"
+#
+# if len(inp)>1:
+#     doc = nlp(spellcorrection(inp))
+#     disease = show_ents(doc)
+#     durationQuestion = critical_symptoms(disease)
+#     flag = True
+#     count += 1
+#     return durationQuestion
+#
+
+
+
+# print("please wait")
+# medical_history()
+# warning()
