@@ -11,7 +11,7 @@
               }},
 
                "cough": {"question": {"duration": "for how long you're having cough?\n 1. few hours 2. few days 3. more than 1 week 4. more than 3 weeks",
-                 "severity": "do you cough blood or colored mucus?\n 1. Yes 2. No",
+                 "severity": "1. Do you have dry cough 2. Do you have phlegm 3. Do you have frequent coughs (dry or wet) 4. do you cough blood or colored mucus?",
                "answer1": ["ok", "ok", "ok","danger"],
                 "answer2": ["danger","ok"]}},
 

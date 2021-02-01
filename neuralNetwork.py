@@ -70,3 +70,6 @@ def check(inp):
 
     return lst.pop()
 
+
+# a = "i am smoker"
+# print(check(a))

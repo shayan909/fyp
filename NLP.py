@@ -1,6 +1,5 @@
 import json
 from typing import List, Any
-
 import spacy
 from nltk.tokenize import word_tokenize
 from spellchecker import SpellChecker
@@ -10,7 +9,7 @@ import symptoms as s_list
 from neuralNetwork import check
 from Driver import driver
 from flask import Flask, render_template, request
-from MedicineRecommendation import recommmendation
+
 app = Flask(__name__)
 
 nlp = spacy.load('en_core_sci_lg')
@@ -65,9 +64,9 @@ def show_ents(doc):
                 newLst.append(ent.text)
                 test = test.replace(ent.text, " ")
                 flag = True
-        if check(test) not in newLst and flag != True:
-            newLst.append(check(test))
-            flag = False
+            elif check(inp) not in newLst and flag != True:
+                newLst.append(check(inp))
+                flag = False
 
 
         # x: str = ' '.join(symplst)
@@ -120,29 +119,33 @@ def critical_symptoms(newLst):
 
 
 def severity(disease):
-    return data["symptoms"]["fever"]["question"]["severity"]
+    sym = disease.pop()
+    disease.append(sym)
+    return data["symptoms"][sym]["question"]["severity"]
 
     # symp_details["duration"] = data["symptoms"][newLst[0]]["question"]["answer1"][duration - 1]
     # newLst = []
 
-def medical_history():
-    nlp = spacy.load('en_core_sci_lg')
-    med_hist = input("mention your medical condition(s) if any\n")
-    drg_hist = input("\nplease mention drug names you are currently taking if any\n")
-    for i in range(2):
-        if i == 0:
-            doc = nlp(med_hist)
-            if doc.ents:
-                for ent in doc.ents:
-                    medical_details.append(str(ent.text))
-        elif i == 1:
-            doc = nlp(drg_hist)
-            if doc.ents:
-                for ent in doc.ents:
-                    drug_history.append(str(ent.text));
-    print(medical_details)
-    print(drug_history)
+def medical_history(med):
 
+    nlp = spacy.load('en_core_sci_lg')
+    doc = nlp(med)
+    if doc.ents:
+        for ent in doc.ents:
+            medical_details.append(str(ent.text))
+
+    return medical_details.pop()
+
+
+# def drug_history():
+#     drg_hist = input("\nplease mention drug names you are currently taking if any\n")
+#
+#     # if i == 1:
+#     # doc = nlp(drg_hist)
+#     # if doc.ents:
+#     #     for ent in doc.ents:
+#     #         drug_history.append(str(ent.text));
+#     # print(drug_history)
 
 
 def warning():
@@ -151,8 +154,7 @@ def warning():
                 if my_symp[x]["severity"]=="danger" or my_symp[x]["duration"]=="danger":
                         concern.append(x)
         if len(concern)>=1:
-            print(f"\ncaution!\nplease seek immediate medical assistance for the following symptom(s)")
-            print(*concern, sep=",")
+            return f"\ncaution!\nplease seek immediate medical assistance for the following symptom(s) \n {concern}"
 
 
 @app.route('/')
@@ -162,16 +164,18 @@ def index():
 
 @app.route('/get')
 def get_bot_response():
+
     inp = request.args.get('msg')
     global disease
     global array
     global count
+    global medHistory
+    medHistory = []
     flag = False
     array = []
-    disease = ""
     if inp:
         inp = inp.lower()
-        if len(inp) > 3:
+        if len(inp) > 3 and 'count' not in globals():
             doc = nlp(spellcorrection(inp))
             disease = show_ents(doc)
             durationQuestion = critical_symptoms(disease)
@@ -182,8 +186,10 @@ def get_bot_response():
             if durationQuestion:
                 return durationQuestion
             else:
+                print(disease)
                 return "I didn't understand your query"
-        elif len(inp) == 1 and count == 1:
+        elif len(inp)==1 and count == 1:
+            print(disease)
             sev = severity(disease)
             # if inp == "1":
             #     array.append("mild")
@@ -205,35 +211,36 @@ def get_bot_response():
             # print(array)
             # count = 2
             # a = driver(['Paracetamol'],['fever'],"cough")
-            a, b = driver(['Paracetamol'],['fever'],disease)
+            # a = driver(['Paracetamol'],['sneeze'],disease)
             # pred = b.pop(0)
-            # return "Do you have any other symptom \n Yes? \n No?"
-            return a
-        elif inp == "no" and count == 2:
+            count = 3
+            return "Do you have any other symptom \n yes? \n no?"
+            # b = a or "medicine"
+            # return b
+        elif inp == "no" and count == 3:
+            a = driver(['Paracetamol'],['fever'],array)
+            count = 4
+            return a, "Mention if you have any underlying ilness"
+             # return "mention your medical condition(s) if any. (else press enter)"
 
-             return "No typed"
+        elif len(inp)>3 and count == 4:
+            med = medical_history(inp)
+            return med
+           # medHistory.append(med)
 
-        # elif inp == "yes" and count == 2:
-        #      return "Welcome"
+
+
+        elif inp == "yes" and count == 2:
+
+            return "Welcome"
 
 if __name__ == "__main__":
     app.run(debug=False)
-# disease  = ""
-# final_symptoms = []
-# count = 0
-# inp = "1"
-#
-# if len(inp)>1:
-#     doc = nlp(spellcorrection(inp))
-#     disease = show_ents(doc)
-#     durationQuestion = critical_symptoms(disease)
-#     flag = True
-#     count += 1
-#     return durationQuestion
-#
 
 
+# inp = "dard hai"
+# doc = nlp(spellcorrection(inp))
+# disease = show_ents(doc)
+# print(disease)
 
-# print("please wait")
-# medical_history()
-# warning()
+
