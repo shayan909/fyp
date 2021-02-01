@@ -1,4 +1,6 @@
 import json
+from typing import List, Any
+
 import spacy
 from nltk.tokenize import word_tokenize
 from spellchecker import SpellChecker
@@ -6,8 +8,9 @@ from spacy.tokens import span
 import numpy as np
 import symptoms as s_list
 from neuralNetwork import check
+from Driver import driver
 from flask import Flask, render_template, request
-
+from MedicineRecommendation import recommmendation
 app = Flask(__name__)
 
 nlp = spacy.load('en_core_sci_lg')
@@ -108,12 +111,6 @@ def critical_symptoms(newLst):
             for x in newLst:
                 if x in data["symptoms"]:
                     return data["symptoms"][x]["question"]["duration"]
-                else:
-                    return "Any other symptom?"
-
-
-
-
 
                 #         choice2 = int(input())
                 #         symp_details["severity"] = data["symptoms"][x]["question"]["answer2"][choice2 - 1]
@@ -122,11 +119,11 @@ def critical_symptoms(newLst):
                 #     continue;
 
 
-def severity(disease, inp):
+def severity(disease):
+    return data["symptoms"]["fever"]["question"]["severity"]
+
     # symp_details["duration"] = data["symptoms"][newLst[0]]["question"]["answer1"][duration - 1]
     # newLst = []
-    inp = ""
-    return data["symptoms"][disease]["question"]["severity"]
 
 def medical_history():
     nlp = spacy.load('en_core_sci_lg')
@@ -166,26 +163,61 @@ def index():
 @app.route('/get')
 def get_bot_response():
     inp = request.args.get('msg')
+    global disease
+    global array
+    global count
+    flag = False
+    array = []
+    disease = ""
     if inp:
         inp = inp.lower()
-        disease = ""
-        final_symptoms = []
-        count = 0
-
-        if len(inp) > 1:
+        if len(inp) > 3:
             doc = nlp(spellcorrection(inp))
             disease = show_ents(doc)
             durationQuestion = critical_symptoms(disease)
             flag = True
-            count += 1
+            count = 1
+            print(count)
+            array.append(disease)
             if durationQuestion:
                 return durationQuestion
-        if len(inp) == 1 and count == 1:
-            sev = severity(disease, inp)
+            else:
+                return "I didn't understand your query"
+        elif len(inp) == 1 and count == 1:
+            sev = severity(disease)
+            # if inp == "1":
+            #     array.append("mild")
+            # elif inp == "2":
+            #     array.append("moderate")
+            # elif inp == "3":
+            #     array.append("severe")
+            # print(array)
+            count = 2
             return sev
 
+        elif len(inp) == 1 and count == 2:
+            # if inp == "1":
+            #     array.append("mild")
+            # elif inp == "2":
+            #     array.append("moderate")
+            # elif inp == "3":
+            #     array.append("severe")
+            # print(array)
+            # count = 2
+            # a = driver(['Paracetamol'],['fever'],"cough")
+            a, b = driver(['Paracetamol'],['fever'],disease)
+            # pred = b.pop(0)
+            # return "Do you have any other symptom \n Yes? \n No?"
+            return a
+        elif inp == "no" and count == 2:
+
+             return "No typed"
+
+        # elif inp == "yes" and count == 2:
+        #      return "Welcome"
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 # disease  = ""
 # final_symptoms = []
 # count = 0
