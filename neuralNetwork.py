@@ -6,12 +6,8 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
-
-
 with open('intention.json') as file:
     data = json.load(file)
-
-
 
 training_sentences = []
 training_labels = []
@@ -49,6 +45,7 @@ model.add(keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_len
 model.add(keras.layers.GlobalAveragePooling1D())
 model.add(keras.layers.Dense(16, activation='relu'))
 model.add(keras.layers.Dense(16, activation='relu'))
+
 model.add(keras.layers.Dense(classes, activation='softmax'))
 
 training_labels_final = np.array(training_labels)
@@ -71,5 +68,5 @@ def check(inp):
     return lst.pop()
 
 
-# a = "i am smoker"
-# print(check(a))
+a = check("sensitive to cold")
+print(a)

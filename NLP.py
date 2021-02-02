@@ -1,7 +1,9 @@
 import json
 from typing import List, Any
 import spacy
+import nltk
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 from spellchecker import SpellChecker
 from spacy.tokens import span
 import numpy as np
@@ -38,16 +40,29 @@ def spellcorrection(inp):
     myinp = word_tokenize(inp) #tokenize input
     spell = SpellChecker() #initialize spellchecker method
     spell.word_frequency.load_text_file("strings.txt")
-    misspelled = spell.unknown(myinp)
+
+    stop_words = set(stopwords.words('english'))
+    filtered_sentence = [w for w in myinp if not w in stop_words]
+    filtered_sentence = []
+
+    for w in myinp:
+        if w not in stop_words:
+            filtered_sentence.append(w)
+
+    print(filtered_sentence)
+
+    misspelled = spell.unknown(filtered_sentence)
     mistake = list(misspelled)
     correct_spell=[]
     print("mistake")
     print(mistake)
 
+
     for i in range(len(mistake)):
         for word in list(spell.candidates(mistake[i])):
             if word in s_list.symptoms:
                 inp = inp.replace(mistake[i],word)
+
 
     return inp
 
@@ -60,11 +75,12 @@ def show_ents(doc):
     test = inp
     if doc.ents:
         for ent in doc.ents:
-            if ent.text in s_list.symptoms and ent.text != newLst:
+            if ent.text in s_list.symptoms and ent.text not in newLst:
                 newLst.append(ent.text)
                 test = test.replace(ent.text, " ")
                 flag = True
             elif check(inp) not in newLst and flag != True:
+                print(check(inp))
                 newLst.append(check(inp))
                 flag = False
 
@@ -175,8 +191,9 @@ def get_bot_response():
     array = []
     if inp:
         inp = inp.lower()
-        if len(inp) > 3 and 'count' not in globals():
+        if len(inp) > 3:
             doc = nlp(spellcorrection(inp))
+            print(doc)
             disease = show_ents(doc)
             durationQuestion = critical_symptoms(disease)
             flag = True
@@ -186,8 +203,7 @@ def get_bot_response():
             if durationQuestion:
                 return durationQuestion
             else:
-                print(disease)
-                return "I didn't understand your query"
+                return f"You have {str(disease)}, enter any other symptom or press Enter"
         elif len(inp)==1 and count == 1:
             print(disease)
             sev = severity(disease)
@@ -238,9 +254,8 @@ if __name__ == "__main__":
     app.run(debug=False)
 
 
-# inp = "dard hai"
+# inp = "i have temperature"
 # doc = nlp(spellcorrection(inp))
 # disease = show_ents(doc)
-# print(disease)
 
 
