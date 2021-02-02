@@ -1,25 +1,21 @@
-from DiseaseClasses import Identification
+# from DiseaseClasses import Identification
 from MedicineRecommendation import recommmendation
-
+from Identifier import identifierForDisease
 
 def driver(inputCurrentMedicine, inputCurrentIllness, inputSymptoms):
     inputSymptomsOrDiseases = [] # Symptoms from user + Diseases Identified for Medicine Recommendation
-    predictions = Identification(inputSymptoms)
-    predictionsString = 'You might have:' + ' '.join([str(elem) for elem in predictions])  # list turn into string
+    predictionString = identifierForDisease(inputSymptoms)
+    # predictionsString = 'You might be having: ' + ' '.join([str(elem) for elem in predictions])  # turn list into string
     # print(predictionsString)
     inputSymptomsOrDiseases.extend(inputSymptoms)
-    inputSymptomsOrDiseases.extend(predictions)
+    inputSymptomsOrDiseases.extend(predictionString)
     recommmendationString = recommmendation(inputSymptomsOrDiseases, inputCurrentMedicine, inputCurrentIllness)
     # print(recommendationString)
-    # return predictionsString, recommmendationString
-    return predictionsString
+    return predictionString, recommmendationString
 
 
-# inputSymptomsOrDiseases = ['Wheezing', 'Redness in one or both eyes', 'Itchiness in one or both eyes',
-#                            'Watery Eyes', 'phlegm', 'Stuffy Nose']
-# inputSymptomsOrDiseases = ['COUGH', 'hives']
-# inputCurrentMedicine = ['Ibuprofen']
-# inputCurrentIllness = ['Heart Disease']
-# pred = driver(inputCurrentMedicine, inputCurrentIllness, inputSymptomsOrDiseases)
-# a = pred.pop()
-# print('-'.join(a))
+# inputCurrentMedicine = ['']  # To be taken from chatbot
+# inputCurrentIllness = ['']  # To be taken from chatbot
+# inputSymptoms = ['sore throat']  # To be taken from chatbot
+# predictionDisease, recommmendationDrug = driver(inputCurrentMedicine, inputCurrentIllness, inputSymptoms)
+# print(predictionDisease, recommmendationDrug)

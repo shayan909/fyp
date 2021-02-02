@@ -186,12 +186,15 @@ def get_bot_response():
     global array
     global count
     global medHistory
+    global duration
+    global degree
     medHistory = []
-    flag = False
+    global medicine
+    medicine = []
     array = []
-    if inp:
+    if inp: #I am having xyz
         inp = inp.lower()
-        if len(inp) > 3:
+        if len(inp) > 3 and 'count' not in globals():
             doc = nlp(spellcorrection(inp))
             print(doc)
             disease = show_ents(doc)
@@ -203,52 +206,93 @@ def get_bot_response():
             if durationQuestion:
                 return durationQuestion
             else:
+                count = 2
                 return f"You have {str(disease)}, enter any other symptom or press Enter"
-        elif len(inp)==1 and count == 1:
-            print(disease)
-            sev = severity(disease)
-            # if inp == "1":
-            #     array.append("mild")
-            # elif inp == "2":
-            #     array.append("moderate")
-            # elif inp == "3":
-            #     array.append("severe")
-            # print(array)
-            count = 2
-            return sev
 
-        elif len(inp) == 1 and count == 2:
-            # if inp == "1":
-            #     array.append("mild")
-            # elif inp == "2":
-            #     array.append("moderate")
-            # elif inp == "3":
-            #     array.append("severe")
-            # print(array)
-            # count = 2
-            # a = driver(['Paracetamol'],['fever'],"cough")
-            # a = driver(['Paracetamol'],['sneeze'],disease)
-            # pred = b.pop(0)
+        elif len(inp)==1 and count == 1: #duration, return severity Question
+            print(disease)
+            count = 2
+            if severity(disease):
+                sev = severity(disease)
+                if inp == "1":
+                    duration = "mild"
+                elif inp == "2":
+                    duration = "moderate"
+                elif inp == "3":
+                    duration = "severe"
+                elif inp == "4":
+                    duration = "severe"
+
+                print(duration)
+
+                return sev
+
+
+        elif len(inp) == 1 and count == 2:#severity,
+            print(duration)
+
+            if inp == "1":
+                degree = "mild"
+            elif inp == "2":
+                degree = "moderate"
+            elif inp == "3":
+                degree = "severe"
+            elif inp == "4":
+                degree = "severe"
+
+            print(degree)
             count = 3
-            return "Do you have any other symptom \n yes? \n no?"
-            # b = a or "medicine"
-            # return b
+            return "\n Do you have any other symptoms?"
+
         elif inp == "no" and count == 3:
-            a = driver(['Paracetamol'],['fever'],array)
             count = 4
-            return a, "Mention if you have any underlying ilness"
-             # return "mention your medical condition(s) if any. (else press enter)"
+            print(duration)
+            return "mention your major medical condition"
+
+        elif inp == "yes" and count == 3:
+            count = 7
+            return "Please mention other symptom"
+
+        if len(inp) > 3 and count == 7:
+            doc = nlp(spellcorrection(inp))
+            print(doc)
+            disease = show_ents(doc)
+            durationQuestion = critical_symptoms(disease)
+            flag = True
+            count = 1
+            print(count)
+            array.append(disease)
+            if durationQuestion:
+                return durationQuestion
+            else:
+                count = 2
+                return f"You have {str(disease)}, enter any other symptom or press Enter"
 
         elif len(inp)>3 and count == 4:
+            cond = medical_history(inp)
+            medHistory.append(cond)
+            count = 5
+            return "mention medicine you are taking"
+
+        elif len(inp)>3 and count == 5:
+            count = 6
+
+            if duration == "severe":
+                s = f"\nYour symptom's duration is alarming please seek medical attention"
+            else:
+                s = ""
+
+            if degree == "severe":
+                d = f"\nYour symptom is severe please seek medical attention immediately"
+            else:
+                d = ""
+
             med = medical_history(inp)
-            return med
-           # medHistory.append(med)
+            medicine.append(med)
+            a, b = driver(medicine, medHistory, disease)
+            return a + f"\n {b}"+f"\n{s}\n{d}"
 
 
-
-        elif inp == "yes" and count == 2:
-
-            return "Welcome"
 
 if __name__ == "__main__":
     app.run(debug=False)

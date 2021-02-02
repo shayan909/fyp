@@ -1,14 +1,5 @@
 import sqlite3
-from typing import List, Any
-
 conn = sqlite3.connect('chatbot.db', check_same_thread=False)
-
-# things that will be input by user
-# inputSymptomsOrDiseases = ['COUGH', 'Wheezing', 'Redness in one or both eyes', 'Itchiness in one or both eyes',
-#                            'Watery Eyes', 'Allergy', 'Asthma', 'phlegm', 'Stuffy Nose']
-# inputSymptomsOrDiseases = ['COUGH', 'hives']
-# inputCurrentMedicine = ['Ibuprofen']
-# inputCurrentIllness = ['Heart Disease']
 
 
 # check for indication
@@ -126,15 +117,16 @@ def recommmendation(inputSymptomsOrDiseases, inputCurrentMedicine, inputCurrentI
 
     def getRecommendation(DistinctDrugIndicationSet):
         DistinctDrugIndicationSetDict = {}
+        theOnesToskip = set()
         for i in DistinctDrugIndicationSet:
             for n in DistinctDrugIndicationSet:
-                if i[0] == n[0]:
+                if i[0] == n[0] and i[0] not in theOnesToskip:
                     DistinctDrugIndicationSetDict.setdefault(i[0], [])
                     DistinctDrugIndicationSetDict[i[0]].append(n[1])
             for x in DistinctDrugIndicationSet:  # Removing all the values that have been worked on
                 if x[0] == i[0]:
-                    DistinctDrugIndicationSet.remove(x)
-        # print(DistinctDrugIndicationSetDict)
+                    theOnesToskip.add(i)
+        print(DistinctDrugIndicationSetDict)
         Drugs = []
         Indications = []
         for key in DistinctDrugIndicationSetDict.keys():
@@ -149,7 +141,23 @@ def recommmendation(inputSymptomsOrDiseases, inputCurrentMedicine, inputCurrentI
             for value in DistinctDrugIndicationSetDict.get(key):
                 cursor = conn.execute('SELECT DISEASE_NAME FROM INDICATION WHERE IndicationID=?', (value,))
                 Indications.append(cursor.fetchone())
-            return Drugs
+
+        Drugs = [list(ele) for ele in Drugs]  # Convert List of Tuples to lists of List
+        for index, drug in enumerate(Drugs):
+            temp = [i for i in drug if i]  # Remove None Values
+            temp = ' '.join([str(elem) for elem in temp])  # turn List into string
+            Drugs[index] = temp
+        # tempDrugsList = DistinctDrugIndicationSetDict.keys()
+        # allIndicationsForADrug = []
+        # for drug in tempDrugsList:
+        #     cursor = conn.execute('SELECT INDICATION.DISEASE_NAME '
+        #                           'from INDICATIONS_DRUGS '
+        #                           'INNER JOIN INDICATION ON INDICATIONS_DRUGS.IndicationID = INDICATION.IndicationID '
+        #                           'INNER JOIN DRUG ON INDICATIONS_DRUGS.DID = DRUG.DID '
+        #                           'WHERE DRUG.DID=?', (drug,))
+        #     allIndicationsForADrug.append(cursor.fetchall())
+        Drugs = '\nTake these medications:\n' + '\n'.join([str(elem) for elem in Drugs])  # turn List into string
+        return Drugs
 
 
     DrugIndicationIDs = matchIndication(inputSymptomsOrDiseases)
@@ -165,21 +173,32 @@ def recommmendation(inputSymptomsOrDiseases, inputCurrentMedicine, inputCurrentI
     # print("\nMatched Related Drugs ID with their InteractionIDs:", matchedDrugInteractionID)
 
     FilteredDrugsIndications = DiscardDrugs(DrugIndicationIDs, matchedDrugContraindicationID, matchedDrugInteractionID)
-    # print("\nDrugs and Indications after minusing Contraindications/Interactions:", FilteredDrugsIndications)
+    print("\nDrugs and Indications after minusing Contraindications/Interactions:", FilteredDrugsIndications)
 
     PreferredDrugs = getPreferredDrugs(FilteredDrugsIndications)
-    # print("\nThe Best Drugs after selecting Preferred Drugs:", PreferredDrugs)
+    print("\nThe Best Drugs after selecting Preferred Drugs:", PreferredDrugs)
 
     DistinctDrugIndicationSet = getDistinctDrugsIndications(PreferredDrugs)
-    # print("\nThe Best Drugs after removing extra Drugs for each Symptom:", DistinctDrugIndicationSet)
+    print("\nThe Best Drugs after removing extra Drugs for each Symptom:", DistinctDrugIndicationSet)
 
     Recommendation = getRecommendation(DistinctDrugIndicationSet)
     # print(Recommendation)
 
+
+    # for index in range(len(Recommendation)):
+    #     Recommendation.insert(index, list(Recommendation[index]))
+    # for index, drug in enumerate(Recommendation):
+    #     temp = list(drug)
+    #     temp = [i for i in temp if i]  # Remove None Values
+    #     temp = ' '.join([str(elem) for elem in temp])  # turn List into string
+    #     Recommendation.insert(index, temp)
+    # Recommendation = 'Take:' + ' '.join([str(elem) for elem in Recommendation])  # turn List into string
     return Recommendation
 
-
-
-# r = recommmendation(inputSymptomsOrDiseases,inputCurrentMedicine,inputCurrentIllness)
-# print(r.pop(0))
-# print(type(r))
+# things that will be input by user
+# inputSymptomsOrDiseases = ['COUGH', 'Wheezing', 'Redness in one or both eyes', 'Itchiness in one or both eyes',
+#                            'Watery Eyes', 'Allergy', 'Asthma', 'phlegm', 'Stuffy Nose']
+# inputSymptomsOrDiseases = ['COUGH', 'hives', 'Watery Eyes']
+# inputCurrentMedicine = []
+# inputCurrentIllness = []
+# print(recommmendation(inputSymptomsOrDiseases, inputCurrentMedicine, inputCurrentIllness))
