@@ -15,10 +15,13 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 nlp = spacy.load('en_core_sci_lg')
+medModel = spacy.load('en_core_sci_lg')
+
 #disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
 #medicine_model = 'en_ner_bionlp13cg_md';
 
 inp = ""
+inp2 = ""
 
 
 with open('intents.json') as file:
@@ -41,17 +44,17 @@ def spellcorrection(inp):
     spell = SpellChecker() #initialize spellchecker method
     spell.word_frequency.load_text_file("strings.txt")
 
-    stop_words = set(stopwords.words('english'))
-    filtered_sentence = [w for w in myinp if not w in stop_words]
-    filtered_sentence = []
+    # stop_words = set(stopwords.words('english'))
+    # filtered_sentence = [w for w in myinp if not w in stop_words]
+    # filtered_sentence = []
+    #
+    # for w in myinp:
+    #     if w not in stop_words:
+    #         filtered_sentence.append(w)
+    #
+    # print(filtered_sentence)
 
-    for w in myinp:
-        if w not in stop_words:
-            filtered_sentence.append(w)
-
-    print(filtered_sentence)
-
-    misspelled = spell.unknown(filtered_sentence)
+    misspelled = spell.unknown(myinp)
     mistake = list(misspelled)
     correct_spell=[]
     print("mistake")
@@ -79,11 +82,10 @@ def show_ents(doc):
                 newLst.append(ent.text)
                 test = test.replace(ent.text, " ")
                 flag = True
-            elif check(inp) not in newLst and flag != True:
-                print(check(inp))
-                newLst.append(check(inp))
-                flag = False
-
+            elif check(inp2) not in newLst and flag != True:
+                print(check(inp2))
+                newLst.append(check(inp2))
+                flag = True
 
         # x: str = ' '.join(symplst)
         # x = x.split(' ')
@@ -144,8 +146,7 @@ def severity(disease):
 
 def medical_history(med):
 
-    nlp = spacy.load('en_core_sci_lg')
-    doc = nlp(med)
+    doc = medModel(med)
     if doc.ents:
         for ent in doc.ents:
             medical_details.append(str(ent.text))
@@ -183,6 +184,7 @@ def get_bot_response():
 
     inp = request.args.get('msg')
     global disease
+    global disease1
     global array
     global count
     global medHistory
@@ -194,6 +196,7 @@ def get_bot_response():
     array = []
     if inp: #I am having xyz
         inp = inp.lower()
+        inp2 = str(inp)
         if len(inp) > 3 and 'count' not in globals():
             doc = nlp(spellcorrection(inp))
             print(doc)
@@ -206,8 +209,8 @@ def get_bot_response():
             if durationQuestion:
                 return durationQuestion
             else:
-                count = 2
-                return f"You have {str(disease)}, enter any other symptom or press Enter"
+                count = 7
+                return f"You have {str(disease)},Enter another symptom"
 
         elif len(inp)==1 and count == 1: #duration, return severity Question
             print(disease)
@@ -256,19 +259,21 @@ def get_bot_response():
         if len(inp) > 3 and count == 7:
             doc = nlp(spellcorrection(inp))
             print(doc)
-            disease = show_ents(doc)
-            durationQuestion = critical_symptoms(disease)
+            disease1 = show_ents(doc)
+            durationQuestion = critical_symptoms(disease1)
+            disease.extend(disease1)
             flag = True
             count = 1
             print(count)
-            array.append(disease)
+            array.append(disease1)
             if durationQuestion:
                 return durationQuestion
             else:
-                count = 2
-                return f"You have {str(disease)}, enter any other symptom or press Enter"
+                count = 8
+                return f"You have {str(disease1)}, Type 'End'"
 
-        elif len(inp)>3 and count == 4:
+
+        elif len(inp)>2 and count == 4:
             cond = medical_history(inp)
             medHistory.append(cond)
             count = 5
@@ -277,20 +282,27 @@ def get_bot_response():
         elif len(inp)>3 and count == 5:
             count = 6
 
-            if duration == "severe":
-                s = f"\nYour symptom's duration is alarming please seek medical attention"
+            if  duration == "severe":
+                s = f"\nYour symptom(s) duration is alarming please seek medical attention"
             else:
                 s = ""
 
-            if degree == "severe":
-                d = f"\nYour symptom is severe please seek medical attention immediately"
+            if  degree == "severe":
+                d = f"\nYour symptom(s) are severe please seek medical attention immediately"
             else:
                 d = ""
 
             med = medical_history(inp)
             medicine.append(med)
+            print(disease)
+            print(medHistory)
+            print(medicine)
             a, b = driver(medicine, medHistory, disease)
             return a + f"\n {b}"+f"\n{s}\n{d}"
+
+        elif inp == "end" and count == 8:
+            a, b = driver(medicine, medHistory, disease)
+            return a+f"\n {b}"
 
 
 

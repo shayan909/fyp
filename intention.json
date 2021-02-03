@@ -12,7 +12,7 @@
          "context_set": ""
         },
       {"tag": "Headaches",
-         "patterns": ["headache","head pain"],
+         "patterns": ["headache"],
          "responses": [""],
           "disease": ["Headaches"],
          "context_set": ""
@@ -42,7 +42,7 @@
          "context_set": ""
         },
       {"tag": "High Fever",
-         "patterns": ["very high fever","high temperature","very hot"],
+         "patterns": ["very high fever","i have temperature","very hot"],
          "responses": [""],
           "disease": ["High_Fever"],
          "context_set": ""
@@ -129,12 +129,6 @@
          "patterns": ["tobacco"],
          "responses": [""],
           "disease": ["Tobacco_History"],
-         "context_set": ""
-        },
-      {"tag": "tingling in hands and feet",
-         "patterns": ["tingling sensation in hand and feet","tingling"],
-         "responses": [""],
-          "disease": ["tingling_in_hands_and_feet"],
          "context_set": ""
         },
       {"tag": "vomiting",

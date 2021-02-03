@@ -68,5 +68,5 @@ def check(inp):
     return lst.pop()
 
 
-# a = check("sensitive to cold")
+# a = check("facing breathing issue")
 # print(a)
