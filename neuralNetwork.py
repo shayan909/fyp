@@ -67,6 +67,3 @@ def check(inp):
 
     return lst.pop()
 
-
-# a = check("facing breathing issue")
-# print(a)

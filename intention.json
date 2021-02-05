@@ -1,92 +1,13 @@
 {"intents": [
-      {"tag": "Stuffy Nose",
+      {"tag": "fever",
+         "patterns": ["i have temperature", "feeling hot", "fever", "i migh have fever"],
+         "responses": [""],
+          "disease": ["fever"],
+         "context_set": ""
+        },  {"tag": "Stuffy Nose",
          "patterns": ["stuffy nose","nose blocked"],
          "responses": [""],
           "disease": ["Stuffy_Nose"],
-         "context_set": ""
-        },
-      {"tag": "Sore Throat",
-         "patterns": ["sore throat","throat pain"],
-         "responses": [""],
-          "disease": ["Sore_Throat"],
-         "context_set": ""
-        },
-      {"tag": "Headaches",
-         "patterns": ["headache"],
-         "responses": [""],
-          "disease": ["Headaches"],
-         "context_set": ""
-        },
-      {"tag": "Loss Of Smell",
-         "patterns": ["loss of smell","sense of taste lost","sense of smell lost","i cant smell"],
-         "responses": [""],
-          "disease": ["Loss_Of_Smell"],
-         "context_set": ""
-        },
-      {"tag": "Shivering",
-         "patterns": ["shivering","feeling shivery"],
-         "responses": [""],
-          "disease": ["Shivering"],
-         "context_set": ""
-        },
-      {"tag": "Phlegm",
-         "patterns": ["phlegm","mucus","coughing mucus","chest congestion"],
-         "responses": [""],
-          "disease": ["Phlegm"],
-         "context_set": ""
-        },
-      {"tag": "Throat Irritation",
-         "patterns": ["irritation in throat","my throat hurts","itchy throat"],
-         "responses": [""],
-          "disease": ["Throat_Irritation"],
-         "context_set": ""
-        },
-      {"tag": "High Fever",
-         "patterns": ["very high fever","i have temperature","very hot"],
-         "responses": [""],
-          "disease": ["High_Fever"],
-         "context_set": ""
-        },
-      {"tag": "Allergy Trigger",
-         "patterns": ["allergy","allergy trigger","allergy ","itchy nose"],
-         "responses": [""],
-          "disease": ["Allergy_Trigger"],
-         "context_set": ""
-        },
-      {"tag": "Long Term Breathing Or Wheezing,",
-         "patterns": ["wheezing with breathing problem","breathing with sounds"],
-         "responses": [""],
-          "disease": ["Long_Term_Breathing_Or_Wheezing,"],
-         "context_set": ""
-        },
-      {"tag": "stiff neck",
-         "patterns": ["stiff neck","tightness in neck"],
-         "responses": [""],
-          "disease": ["stiff_neck"],
-         "context_set": ""
-        },
-      {"tag": "Redness in one or both eyes",
-         "patterns": ["eye redness","redness in eye","red eyes"],
-         "responses": [""],
-          "disease": ["Redness_in_one_or_both_eyes"],
-         "context_set": ""
-        },
-      {"tag": "Red Raised Itchy Bumps",
-         "patterns": ["red bumps","itchy bumps","Red Raised Itchy lumps"],
-         "responses": [""],
-          "disease": ["Red_Raised_Itchy_Bumps"],
-         "context_set": ""
-        },
-      {"tag": "Sensitive to Cold",
-         "patterns": ["sensitive to cold","i am sensitive to cold"],
-         "responses": [""],
-          "disease": ["Sensitive_to_Cold"],
-         "context_set": ""
-        },
-      {"tag": "Toothache",
-         "patterns": ["toothache","pain in teeth","painful tooth","tooth hurting"],
-         "responses": [""],
-          "disease": ["Toothache"],
          "context_set": ""
         },
       {"tag": "Gas",
@@ -99,12 +20,6 @@
          "patterns": ["burning feeling in chest"],
          "responses": [""],
           "disease": ["burn_feeling_in_chest"],
-         "context_set": ""
-        },
-      {"tag": "bitter fluid in mouth",
-         "patterns": ["bitter taste in mouth","bitter fluid in mouth","bitter"],
-         "responses": [""],
-          "disease": ["bitter_fliud_in_mouth"],
          "context_set": ""
         },
       {"tag": "nausea",
@@ -129,12 +44,6 @@
          "patterns": ["tobacco"],
          "responses": [""],
           "disease": ["Tobacco_History"],
-         "context_set": ""
-        },
-      {"tag": "vomiting",
-         "patterns": ["vomiting", "i just vomited", "feeling of vomit", "vomit"],
-         "responses": [""],
-          "disease": ["vomiting"],
          "context_set": ""
         }
 ]

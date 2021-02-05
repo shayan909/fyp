@@ -15,9 +15,9 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 nlp = spacy.load('en_core_sci_lg')
-medModel = spacy.load('en_core_sci_lg')
+medModel = spacy.load('en_ner_bc5cdr_md')
 
-#disease_model = 'en_ner_bc5cdr_md'en_core_sci_lg;
+#disease_model = en_core_sci_lg;
 #medicine_model = 'en_ner_bionlp13cg_md';
 
 inp = ""
@@ -34,25 +34,11 @@ final_symps=[]
 testlst = []
 
 
-
-# inp: str = input("please describe your symptoms\n")
-
-
 def spellcorrection(inp):
 
     myinp = word_tokenize(inp) #tokenize input
     spell = SpellChecker() #initialize spellchecker method
     spell.word_frequency.load_text_file("strings.txt")
-
-    # stop_words = set(stopwords.words('english'))
-    # filtered_sentence = [w for w in myinp if not w in stop_words]
-    # filtered_sentence = []
-    #
-    # for w in myinp:
-    #     if w not in stop_words:
-    #         filtered_sentence.append(w)
-    #
-    # print(filtered_sentence)
 
     misspelled = spell.unknown(myinp)
     mistake = list(misspelled)
@@ -79,41 +65,40 @@ def show_ents(doc):
     if doc.ents:
         for ent in doc.ents:
             if ent.text in s_list.symptoms and ent.text not in newLst:
-                newLst.append(ent.text)
-                test = test.replace(ent.text, " ")
-                flag = True
-            elif check(inp2) not in newLst and flag != True:
-                print(check(inp2))
-                newLst.append(check(inp2))
-                flag = True
+                 newLst.append(ent.text)
+                 test = test.replace(ent.text, " ")
+                 flag = True
+        if check(inp2) not in newLst and flag != True:
+            print(check(inp2))
+            newLst.append(check(inp2))
+            flag = True
+        #adding underscore between compund word symptoms
+        x: str = ' '.join(newLst)
+        x = x.split(' ')
+        list(x)
 
-        # x: str = ' '.join(symplst)
-        # x = x.split(' ')
-        # list(x)
-        #
-        # xlst = []
-        # for split_word in range(len(x)):
-        #     if x[split_word] in s_list.symptoms:
-        #         xlst.append(x[split_word])
-        #     elif len(x) > split_word:
-        #         if x[split_word - 1] + ' ' + x[split_word] in s_list.symptoms:
-        #             xlst.append(x[split_word - 1] + ' ' + x[split_word])
-        #
-        # for i in xlst:
-        #     temp_lst = str(i).split(" ")
-        #     if len(temp_lst) > 1:
-        #         s = "_"
-        #         s = s.join(temp_lst)
-        #         temp_lst = []
-        #         final_symps.append(s)
-        #     else:
-        #         final_symps.append(i)
+        xlst = []
+        for split_word in range(len(x)):
+            if x[split_word] in s_list.symptoms:
+                xlst.append(x[split_word])
+            elif len(x) > split_word:
+                if x[split_word - 1] + ' ' + x[split_word] in s_list.symptoms:
+                    xlst.append(x[split_word - 1] + ' ' + x[split_word])
+
+        for i in xlst:
+            temp_lst = str(i).split(" ")
+            if len(temp_lst) > 1:
+                s = "_"
+                s = s.join(temp_lst)
+                temp_lst = []
+                final_symps.append(s)
+            else:
+                final_symps.append(i)
 
         print(newLst)
+        print(final_symps)
 
-        # print(final_symps)
-
-    return newLst
+    return final_symps
 
 
 def critical_symptoms(newLst):
@@ -129,20 +114,12 @@ def critical_symptoms(newLst):
                 if x in data["symptoms"]:
                     return data["symptoms"][x]["question"]["duration"]
 
-                #         choice2 = int(input())
-                #         symp_details["severity"] = data["symptoms"][x]["question"]["answer2"][choice2 - 1]
-                #         my_symp[x] = symp_details
-                # else:
-                #     continue;
-
 
 def severity(disease):
     sym = disease.pop()
     disease.append(sym)
     return data["symptoms"][sym]["question"]["severity"]
 
-    # symp_details["duration"] = data["symptoms"][newLst[0]]["question"]["answer1"][duration - 1]
-    # newLst = []
 
 def medical_history(med):
 
@@ -151,18 +128,7 @@ def medical_history(med):
         for ent in doc.ents:
             medical_details.append(str(ent.text))
 
-    return medical_details.pop()
-
-
-# def drug_history():
-#     drg_hist = input("\nplease mention drug names you are currently taking if any\n")
-#
-#     # if i == 1:
-#     # doc = nlp(drg_hist)
-#     # if doc.ents:
-#     #     for ent in doc.ents:
-#     #         drug_history.append(str(ent.text));
-#     # print(drug_history)
+    return medical_details[0]
 
 
 def warning():
@@ -200,6 +166,7 @@ def get_bot_response():
         if len(inp) > 3 and 'count' not in globals():
             doc = nlp(spellcorrection(inp))
             print(doc)
+            print(type(inp))
             disease = show_ents(doc)
             durationQuestion = critical_symptoms(disease)
             flag = True
@@ -276,6 +243,7 @@ def get_bot_response():
         elif len(inp)>2 and count == 4:
             cond = medical_history(inp)
             medHistory.append(cond)
+            print(medHistory)
             count = 5
             return "mention medicine you are taking"
 
@@ -313,5 +281,5 @@ if __name__ == "__main__":
 # inp = "i have temperature"
 # doc = nlp(spellcorrection(inp))
 # disease = show_ents(doc)
-
+# print(disease)
 
